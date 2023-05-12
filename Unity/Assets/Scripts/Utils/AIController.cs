@@ -4,6 +4,7 @@ using UnityEngine;
 using OpenAI_API;
 using OpenAI_API.Chat;
 using OpenAI_API.Models;
+using System.Threading.Tasks;
 
 public class AIController : MonoBehaviour
 {
@@ -45,7 +46,7 @@ public class AIController : MonoBehaviour
         }
     }
 
-    public async string GetResponse(string input)
+    public async Task<string> GetResponse(string input)
     {
         Debug.Log("Send: " + input);
 

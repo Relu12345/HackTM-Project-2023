@@ -8,12 +8,14 @@ using UnityEngine.Android;
 using Unity.VisualScripting;
 using Gtec.Chain.Common.Nodes.FilterNodes;
 using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
 
 public class GPS : MonoBehaviour
 {
     private bool initialized = false;
 
-    private readonly int locationEnabledTimeout = 10;
+    private readonly int ms_in_sec = 1000;
+    private readonly int locationEnabledTimeout = 10000;
     private readonly int maxInitializationWait = 10;
 
     public async void Init()
@@ -28,7 +30,7 @@ public class GPS : MonoBehaviour
 
         // First, check if user has location service enabled
         if (!Input.location.isEnabledByUser){
-            await Task.Delay(TimeSpan.FromSeconds(locationEnabledTimeout));
+            await Task.Delay(locationEnabledTimeout);
         }
 
         Input.location.Start();
@@ -37,11 +39,11 @@ public class GPS : MonoBehaviour
         int i=0;
         while (Input.location.status == LocationServiceStatus.Initializing && i < maxInitializationWait)
         {
-            await Task.Delay(TimeSpan.FromSeconds(1));
+            await Task.Delay(ms_in_sec);
             i++;
         }
 
-        // Service didn't initialize in 20 seconds
+        // Service didn't initialize
         if (i >= maxInitializationWait)
         {
             Debug.Log("GPS initialization timed out");
