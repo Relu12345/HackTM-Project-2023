@@ -23,14 +23,11 @@ public class AIController : MonoBehaviour
         new AIExamples("Third, Example", "Intrebare #3")
     };
 
-    // Start is called before the first frame update
-    void Start()
+    public void Init()
     {
         api = new OpenAIAPI(api_key);
 
         initConversation();
-
-        // SendMessage("Arad, Romania");
     }
 
     private void initConversation()
@@ -48,7 +45,7 @@ public class AIController : MonoBehaviour
         }
     }
 
-    public async void SendMessage(string input)
+    public async string GetResponse(string input)
     {
         Debug.Log("Send: " + input);
 
@@ -56,11 +53,7 @@ public class AIController : MonoBehaviour
         // and get the response
         string response = await chat.GetResponseFromChatbot();
         Debug.Log(response);
-    }
-
-    private async void GetResponse()
-    {
-
+        return response;
     }
 
     private class AIExamples{
