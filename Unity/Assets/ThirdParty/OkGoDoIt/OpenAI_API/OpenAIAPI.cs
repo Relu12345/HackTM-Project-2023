@@ -5,7 +5,7 @@ using OpenAI_API.Files;
 using OpenAI_API.Images;
 using OpenAI_API.Models;
 using OpenAI_API.Moderation;
-using System.Net.Http;
+using System.Xml.Linq;
 
 namespace OpenAI_API
 {
@@ -30,11 +30,6 @@ namespace OpenAI_API
 		/// The API authentication information to use for API calls
 		/// </summary>
 		public APIAuthentication Auth { get; set; }
-
-		/// <summary>
-		/// Optionally provide an IHttpClientFactory to create the client to send requests.
-		/// </summary>
-		public IHttpClientFactory HttpClientFactory { get; set; }
 
 		/// <summary>
 		/// Creates a new entry point to the OpenAPI API, handling auth and allowing access to the various API endpoints
@@ -70,36 +65,37 @@ namespace OpenAI_API
 		/// <summary>
 		/// Text generation is the core function of the API. You give the API a prompt, and it generates a completion. The way you “program” the API to do a task is by simply describing the task in plain english or providing a few written examples. This simple approach works for a wide range of use cases, including summarization, translation, grammar correction, question answering, chatbots, composing emails, and much more (see the prompt library for inspiration).
 		/// </summary>
-		public ICompletionEndpoint Completions { get; }
+		public CompletionEndpoint Completions { get; }
 
 		/// <summary>
 		/// The API lets you transform text into a vector (list) of floating point numbers. The distance between two vectors measures their relatedness. Small distances suggest high relatedness and large distances suggest low relatedness.
 		/// </summary>
-		public IEmbeddingEndpoint Embeddings { get; }
+		public EmbeddingEndpoint Embeddings { get; }
 
 		/// <summary>
 		/// Text generation in the form of chat messages. This interacts with the ChatGPT API.
 		/// </summary>
-		public IChatEndpoint Chat { get; }
+		public ChatEndpoint Chat { get; }
 
 		/// <summary>
 		/// Classify text against the OpenAI Content Policy.
 		/// </summary>
-		public IModerationEndpoint Moderation { get; }
+		public ModerationEndpoint Moderation { get; }
 
 		/// <summary>
 		/// The API endpoint for querying available Engines/models
 		/// </summary>
-		public IModelsEndpoint Models { get; }
+		public ModelsEndpoint Models { get; }
 
 		/// <summary>
 		/// The API lets you do operations with files. You can upload, delete or retrieve files. Files can be used for fine-tuning, search, etc.
 		/// </summary>
-		public IFilesEndpoint Files { get; }
+		public FilesEndpoint Files { get; }
 
 		/// <summary>
-		/// The API lets you do operations with images. Given a prompt and/or an input image, the model will generate a new image.
+		/// The API lets you do operations with images. You can Given a prompt and/or an input image, the model will generate a new image.
 		/// </summary>
-		public IImageGenerationEndpoint ImageGenerations { get; }
+		public ImageGenerationEndpoint ImageGenerations { get; }
+
 	}
 }

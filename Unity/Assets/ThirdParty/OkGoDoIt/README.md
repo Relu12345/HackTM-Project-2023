@@ -1,6 +1,6 @@
 # C#/.NET SDK for accessing the OpenAI GPT-3 API, ChatGPT, and DALL-E 2
 
-A simple C# .NET wrapper library to use with OpenAI's GPT-3 API.  More context [on my blog](https://rogerpincombe.com/openai-dotnet-api).  This is an unofficial wrapper library around the OpenAI API.  I am not affiliated with OpenAI and this library is not endorsed or supported by them.
+A simple C# .NET wrapper library to use with OpenAI's GPT-3 API.  More context [on my blog](https://rogerpincombe.com/openai-dotnet-api).
 
 ## Quick Example
 
@@ -18,8 +18,6 @@ Console.WriteLine(result);
  * [Installation](#install-from-nuget)
  * [Authentication](#authentication)
  * [ChatGPT API](#chatgpt)
-	* [Conversations](#chat-conversations)
-	* [Chat Endpoint](#chat-endpoint-requests)
  * [Completions API](#completions)
 	* [Streaming completion results](#streaming)
  * [Embeddings API](#embeddings)
@@ -33,11 +31,11 @@ Console.WriteLine(result);
 ## Status
 [![OpenAI](https://badgen.net/nuget/v/OpenAI)](https://www.nuget.org/packages/OpenAI/)
 
-Added support for GPT4, streaming conversations with ChatGPT, and supporting [`IHttpClientFactory`](#ihttpclientfactory).
+Added support for ChatGPT, DALLE 2 image generations, and the moderation endpoint.
 
-Should work with the Azure OpenAI Service. See the [Azure](#azure) section for further details.
+Now also should work with the Azure OpenAI Service, although this is untested. See the [Azure](#azure) section for further details.
 
-Thank you [@babrekel](https://github.com/babrekel), [@JasonWei512](https://github.com/JasonWei512), [@GotMike](https://github.com/gotmike), [@megalon](https://github.com/megalon), [@stonelv](https://github.com/stonelv), [@ncface](https://github.com/ncface), [@KeithHenry](https://github.com/KeithHenry), [@gmilano](https://github.com/gmilano), [@metjuperry](https://github.com/metjuperry), [@pandapknaepel](https://github.com/pandapknaepel), and [@Alexei000](https://github.com/Alexei000) for your contributions!
+Thank you [@GotMike](https://github.com/gotmike), [@megalon](https://github.com/megalon), [@stonelv](https://github.com/stonelv), [@ncface](https://github.com/ncface), [@KeithHenry](https://github.com/KeithHenry), [@gmilano](https://github.com/gmilano), [@metjuperry](https://github.com/metjuperry), [@pandapknaepel](https://github.com/pandapknaepel), and [@Alexei000](https://github.com/Alexei000) for your contributions!
 
 ## Requirements
 
@@ -101,13 +99,13 @@ chat.AppendExampleChatbotOutput("No");
 // now let's ask it a question'
 chat.AppendUserInput("Is this an animal? Dog");
 // and get the response
-string response = await chat.GetResponseFromChatbotAsync();
+string response = await chat.GetResponseFromChatbot();
 Console.WriteLine(response); // "Yes"
 
 // and continue the conversation by asking another
 chat.AppendUserInput("Is this an animal? Chair");
 // and get another response
-response = await chat.GetResponseFromChatbotAsync();
+response = await chat.GetResponseFromChatbot();
 Console.WriteLine(response); // "No"
 
 // the entire chat history is available in chat.Messages
@@ -117,33 +115,7 @@ foreach (ChatMessage msg in chat.Messages)
 }
 ```
 
-#### Streaming
-
-Streaming allows you to get results are they are generated, which can help your application feel more responsive.
-
-Using the new C# 8.0 async iterators:
-```csharp
-var chat = api.Chat.CreateConversation();
-chat.AppendUserInput("How to make a hamburger?");
-
-await foreach (var res in chat.StreamResponseEnumerableFromChatbotAsync())
-{
-	Console.Write(res);
-}
-```
-
-Or if using classic .NET Framework or C# <8.0:
-```csharp
-var chat = api.Chat.CreateConversation();
-chat.AppendUserInput("How to make a hamburger?");
-
-await chat.StreamResponseFromChatbotAsync(res =>
-{
-	Console.Write(res);
-});
-```
-
-### Chat Endpoint Requests
+#### Chat Endpoint Requests
 You can access full control of the Chat API by using the `OpenAIAPI.Chat.CreateChatCompletionAsync()` and related methods.
 
 ```csharp
@@ -290,30 +262,19 @@ Image edits and variations are not yet implemented.
 
 ## Azure
 
-For using the Azure OpenAI Service, you need to specify the name of your Azure OpenAI resource as well as your model deployment id.
+For using the Azure OpenAI Service, you need to specify the name of your Azure OpenAI resource as well as your model deployment id.  Additionally you may specify the Api version which defaults to `2022-12-01`.
 
 _I do not have access to the Microsoft Azure OpenAI service, so I am unable to test this functionality.  If you have access and can test, please submit an issue describing your results.  A PR with integration tests would also be greatly appreciated.  Specifically, it is unclear to me that specifying models works the same way with Azure._
 
-Refer the [Azure OpenAI documentation](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/reference) and [detailed screenshots in #64](https://github.com/OkGoDoIt/OpenAI-API-dotnet/issues/64#issuecomment-1479276020) for further information.
+Refer the [Azure OpenAI documentation](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/reference) for further information.
 
 Configuration should look something like this for the Azure service:
 
 ```csharp
 OpenAIAPI api = OpenAIAPI.ForAzure("YourResourceName", "deploymentId", "api-key");
-api.ApiVersion = "2023-03-15-preview"; // needed to access chat endpoint on Azure
 ```
 
 You may then use the `api` object like normal.  You may also specify the `APIAuthentication` is any of the other ways listed in the [Authentication](#authentication) section above.  Currently this library only supports the api-key flow, not the AD-Flow.
-
-As of April 2, 2023, you need to manually select api version `2023-03-15-preview` as shown above to access the chat endpoint on Azure.  Once this is out of preview I will update the default.
-
-## IHttpClientFactory
-While this library does not fully support dependancy injection at this time, you may specify an `IHttpClientFactory` to be used for HTTP requests, which allows for tweaking http request properties, connection pooling, and mocking.  Details in [#103](https://github.com/OkGoDoIt/OpenAI-API-dotnet/pull/103).
-
-```csharp
-OpenAIAPI api = new OpenAIAPI();
-api.HttpClientFactory = myIHttpClientFactoryObject;
-```
 
 ## Documentation
 
