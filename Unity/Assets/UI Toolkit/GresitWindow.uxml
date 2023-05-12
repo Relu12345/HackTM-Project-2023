@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:VisualElement style="-unity-background-image-tint-color: rgb(0, 0, 0); flex-grow: 1; background-color: rgb(255, 0, 12); align-items: center; justify-content: center;">
+            <ui:Label text="GRESIT, SEFU" display-tooltip-when-elided="true" style="justify-content: center; align-items: center; color: rgb(0, 0, 0); font-size: 40px;" />
+            <ui:Button text="Next" display-tooltip-when-elided="true" name="NextQuestion" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
