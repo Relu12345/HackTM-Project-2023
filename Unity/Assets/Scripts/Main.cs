@@ -35,7 +35,7 @@ public class Main : MonoBehaviour
 
         gps.Init();
         //aIController.Init();
-        uILogic.Init(StartButton, NextQuestion);
+        uILogic.Init(StartQuiz, NextQuestion);
     }
 
     void StartButton()
