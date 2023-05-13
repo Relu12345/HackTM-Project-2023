@@ -5,83 +5,66 @@ using UnityEngine.UIElements;
 
 public class UILogic : MonoBehaviour
 {
+    public delegate void ButtonPressedCallBack(int answer);
+    public delegate void SimpleCallBack();
+
+    public VisualElement startPage;
     public VisualElement intrebare;
     public VisualElement corect;
     public VisualElement gresit;
-    public int raspuns;
 
-    public void Init()
+    private VisualElement currentScreen;
+
+    public void Init(SimpleCallBack startCallBack, SimpleCallBack nextCallBack)
     {
-        raspuns = 0;
-        // root-ul documentului UI
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
 
+        startPage = root.Q("StartPage");
         intrebare = root.Q("IntrebareWindow");
         corect = root.Q("CorectWindow");
         gresit = root.Q("GresitWindow");
 
-        raspuns = 3;
+        currentScreen = startPage;
+        currentScreen.style.display = DisplayStyle.Flex;
 
-        intrebare.Q<Button>("Button1").clicked += () =>
+        startPage.Q<Button>("StartButton").clicked += () =>
         {
-            intrebare.style.display = DisplayStyle.None;
-            if (raspuns == 1)
-            {
-                corect.style.display = DisplayStyle.Flex;
-            }
-            else
-            {
-                gresit.style.display = DisplayStyle.Flex;
-            }
+            startCallBack.Invoke();
         };
-        intrebare.Q<Button>("Button2").clicked += () =>
-        {
-            intrebare.style.display = DisplayStyle.None;
-            if (raspuns == 2)
-            {
-                corect.style.display = DisplayStyle.Flex;
-            }
-            else
-            {
-                gresit.style.display = DisplayStyle.Flex;
-            }
-        };
-        intrebare.Q<Button>("Button3").clicked += () =>
-        {
-            intrebare.style.display = DisplayStyle.None;
-            if (raspuns == 3)
-            {
-                corect.style.display = DisplayStyle.Flex;
-            }
-            else
-            {
-                gresit.style.display = DisplayStyle.Flex;
-            }
-        };
-        intrebare.Q<Button>("Button4").clicked += () =>
-        {
-            intrebare.style.display = DisplayStyle.None;
-            if (raspuns == 4)
-            {
-                corect.style.display = DisplayStyle.Flex;
-            }
-            else
-            {
-                gresit.style.display = DisplayStyle.Flex;
-            }
-        };
-
 
         corect.Q<Button>("NextQuestion").clicked += () =>
         {
-            intrebare.style.display = DisplayStyle.Flex;
-            corect.style.display = DisplayStyle.None;
+            nextCallBack.Invoke();
         };
 
         gresit.Q<Button>("NextQuestion").clicked += () =>
         {
-            intrebare.style.display = DisplayStyle.Flex;
-            gresit.style.display = DisplayStyle.None;
+            nextCallBack.Invoke();
         };
+        
+        Debug.Log("UI initialized");
+    }
+
+    public void DisplayQuestion(Parser.Question  question, ButtonPressedCallBack callBack)
+    {
+        ChangeScreen(intrebare);
+        for(int i=1; i<=4; i++){
+            var button = intrebare.Q<Button>("Button"+i.ToString());
+            int ans = i; // We need this because otherwise C# will take the "i" by reference and all the callbacks will be called with 5
+            button.clicked += () =>
+            {
+                callBack.Invoke(ans);
+            };
+            button.text = question.answers[i-1];
+        }
+        var textIntrebare = intrebare.Q<Label>("Label");
+        textIntrebare.text = question.question;
+    }
+
+    public void ChangeScreen(VisualElement newScreen)
+    {
+        currentScreen.style.display = DisplayStyle.None;
+        newScreen.style.display = DisplayStyle.Flex;
+        currentScreen = newScreen;
     }
 }

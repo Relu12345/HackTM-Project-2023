@@ -218,6 +218,8 @@ GameObject:
   - component: {fileID: 1977220625}
   - component: {fileID: 1977220624}
   - component: {fileID: 1977220626}
+  - component: {fileID: 1977220627}
+  - component: {fileID: 1977220628}
   m_Layer: 5
   m_Name: Main Window
   m_TagString: Untagged
@@ -268,3 +270,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9782b9d0fe75fd49b93ee8997a252b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1977220627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977220623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e63776bc09cbf488ed344fd82f03ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1977220628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977220623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc24a3e9d5f16aa5b07bcae4a0ddba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aIController: {fileID: 0}
+  gps: {fileID: 0}
+  uILogic: {fileID: 0}
