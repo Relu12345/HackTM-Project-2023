@@ -10,15 +10,15 @@
             <ui:VisualElement style="width: 100%; flex-shrink: 3;">
                 <ui:VisualElement style="flex-direction: row; flex-wrap: nowrap; justify-content: center; align-items: flex-end; width: 236px; margin-left: 70px; margin-right: 100px; margin-bottom: 50px;">
                     <ui:VisualElement style="width: 50px; align-items: flex-start; flex-direction: row; justify-content: center;">
-                        <ui:Label text="Answers" display-tooltip-when-elided="true" name="A" style="color: rgb(0, 0, 0); border-bottom-color: rgb(245, 98, 10); border-bottom-width: 2px; font-size: 16px; -unity-font: url(&apos;project://database/Assets/Fonts/OpenSans-Regular.ttf?fileID=12800000&amp;guid=0743bfcd11d5856fdb25a1c7c9b3b64b&amp;type=3#OpenSans-Regular&apos;);" />
+                        <ui:Label text="Answers" display-tooltip-when-elided="true" style="color: rgb(0, 0, 0); border-bottom-color: rgb(245, 98, 10); border-bottom-width: 2px; font-size: 16px; -unity-font: url(&apos;project://database/Assets/Fonts/OpenSans-Regular.ttf?fileID=12800000&amp;guid=0743bfcd11d5856fdb25a1c7c9b3b64b&amp;type=3#OpenSans-Regular&apos;);" />
                     </ui:VisualElement>
                     <ui:VisualElement style="flex-direction: column-reverse; flex-wrap: nowrap; justify-content: center; align-items: center; width: 50%; padding-left: 100px;">
-                        <ui:Label text="3/5" display-tooltip-when-elided="true" name="Points" style="color: rgb(0, 0, 0); font-size: 16px; -unity-font: url(&apos;project://database/Assets/Fonts/OpenSans-Regular.ttf?fileID=12800000&amp;guid=0743bfcd11d5856fdb25a1c7c9b3b64b&amp;type=3#OpenSans-Regular&apos;);" />
+                        <ui:Label text="3/5" display-tooltip-when-elided="true" name="Answers" style="color: rgb(0, 0, 0); font-size: 16px; -unity-font: url(&apos;project://database/Assets/Fonts/OpenSans-Regular.ttf?fileID=12800000&amp;guid=0743bfcd11d5856fdb25a1c7c9b3b64b&amp;type=3#OpenSans-Regular&apos;);" />
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-direction: row; flex-wrap: nowrap; justify-content: center; align-items: flex-end; width: 236px; margin-left: 70px; margin-right: 100px;">
                     <ui:VisualElement style="width: 50px; align-items: flex-start; flex-direction: row; justify-content: center;">
-                        <ui:Label text="Points" display-tooltip-when-elided="true" name="A" style="color: rgb(0, 0, 0); border-bottom-color: rgb(245, 98, 10); border-bottom-width: 2px; font-size: 16px; -unity-font: url(&apos;project://database/Assets/Fonts/OpenSans-Regular.ttf?fileID=12800000&amp;guid=0743bfcd11d5856fdb25a1c7c9b3b64b&amp;type=3#OpenSans-Regular&apos;);" />
+                        <ui:Label text="Points" display-tooltip-when-elided="true" style="color: rgb(0, 0, 0); border-bottom-color: rgb(245, 98, 10); border-bottom-width: 2px; font-size: 16px; -unity-font: url(&apos;project://database/Assets/Fonts/OpenSans-Regular.ttf?fileID=12800000&amp;guid=0743bfcd11d5856fdb25a1c7c9b3b64b&amp;type=3#OpenSans-Regular&apos;);" />
                     </ui:VisualElement>
                     <ui:VisualElement style="flex-direction: column-reverse; flex-wrap: nowrap; justify-content: center; align-items: center; width: 50%; padding-left: 100px;">
                         <ui:Label text="30" display-tooltip-when-elided="true" name="Points" style="color: rgb(0, 0, 0); font-size: 16px; -unity-font: url(&apos;project://database/Assets/Fonts/OpenSans-Regular.ttf?fileID=12800000&amp;guid=0743bfcd11d5856fdb25a1c7c9b3b64b&amp;type=3#OpenSans-Regular&apos;);" />
