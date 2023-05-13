@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Main : MonoBehaviour
@@ -19,12 +21,12 @@ public class Main : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // aIController = GetComponent<AIController>();
+        aIController = GetComponent<AIController>();
         gps = GetComponent<GPS>();
         uILogic = GetComponent<UILogic>();
 
         gps.Init();
-        // aIController.Init();
+        aIController.Init();
         uILogic.Init(StartButton, NextQuestion);
     }
 
@@ -34,19 +36,23 @@ public class Main : MonoBehaviour
         
     }
 
-    void StartButton()
+    async void StartButton()
     {
-        currentQuestion = Parser.parseQuestion("{#question#:#Used in ancient times by the poet Tibullus, The Eternal City is a nickname given to what European capital?#, #answers#:{#1#:#Venice#,#2#:#Tivoli#,#3#:#Rome#,#4#:#Siena#},#correct#:3}");
+        // currentQuestion = Parser.parseQuestion("{#question#:#Used in ancient times by the poet Tibullus, The Eternal City is a nickname given to what European capital?#, #answers#:{#1#:#Venice#,#2#:#Tivoli#,#3#:#Rome#,#4#:#Siena#},#correct#:3}");
 
-        // var r = aIController.GetResponse("Timisoara, Romania");
+        var r = await aIController.GetResponse("Timisoara, Romania");
 
-        // Debug.Log(r);
-
+        currentQuestion = Parser.parseQuestion(r);
         uILogic.DisplayQuestion(currentQuestion, buttonPressed);
+        // Debug.Log(r);
+       
     }
 
-    void NextQuestion()
+    async void NextQuestion()
     {
+        var r = await aIController.GetResponse("Baia Mare, Romania");
+
+        currentQuestion = Parser.parseQuestion(r);
         uILogic.DisplayQuestion(currentQuestion, buttonPressed);
     }
 
