@@ -56,14 +56,8 @@ public class GPS : MonoBehaviour
             return;
         }
 
-        if (Input.location.status == LocationServiceStatus.Running)
-        {
-            initialized = true;
-            Debug.Log("GPS initialized");
-            return;
-        }
-
-        Debug.Log("Something wrong in Location init");
+        initialized = true;
+        Debug.Log("GPS initialized");
     }
 
     public Location GetLocation()
@@ -72,7 +66,7 @@ public class GPS : MonoBehaviour
             return new Location();
         }
 
-        if(Input.location.status != LocationServiceStatus.Running){
+        if(Input.location.status == LocationServiceStatus.Failed){
             return new Location();
         }
 
