@@ -6,38 +6,40 @@ using UnityEngine.UIElements;
 public class UILogic : MonoBehaviour
 {
     public delegate void ButtonPressedCallBack(int answer);
-    public delegate void NextCallBack();
+    public delegate void SimpleCallBack();
 
+    public VisualElement startPage;
     public VisualElement intrebare;
     public VisualElement corect;
     public VisualElement gresit;
 
     private VisualElement currentScreen;
 
-    public void Init(NextCallBack callBack)
+    public void Init(SimpleCallBack startCallBack, SimpleCallBack nextCallBack)
     {
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
 
+        startPage = root.Q("StartPage");
         intrebare = root.Q("IntrebareWindow");
         corect = root.Q("CorectWindow");
         gresit = root.Q("GresitWindow");
 
-        // ToDo switch with StartScreen 
-        currentScreen = intrebare;
-        intrebare.style.display = DisplayStyle.Flex;
+        currentScreen = startPage;
+        currentScreen.style.display = DisplayStyle.Flex;
+
+        startPage.Q<Button>("StartButton").clicked += () =>
+        {
+            startCallBack.Invoke();
+        };
 
         corect.Q<Button>("NextQuestion").clicked += () =>
         {
-            callBack.Invoke();
-            // intrebare.style.display = DisplayStyle.Flex;
-            // corect.style.display = DisplayStyle.None;
+            nextCallBack.Invoke();
         };
 
         gresit.Q<Button>("NextQuestion").clicked += () =>
         {
-            callBack.Invoke();
-            intrebare.style.display = DisplayStyle.Flex;
-            gresit.style.display = DisplayStyle.None;
+            nextCallBack.Invoke();
         };
         
         Debug.Log("UI initialized");
