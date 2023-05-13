@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json.Bson;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class UILogic : MonoBehaviour
@@ -12,6 +14,10 @@ public class UILogic : MonoBehaviour
     public VisualElement intrebare;
     public VisualElement corect;
     public VisualElement gresit;
+    public VisualElement calibrare;
+
+    public List<GameObject> lgam = new List<GameObject>(4);
+    public List<UnityEngine.UI.Button> lbut = new List<UnityEngine.UI.Button>(4);
 
     private VisualElement currentScreen;
 
@@ -23,21 +29,22 @@ public class UILogic : MonoBehaviour
         intrebare = root.Q("IntrebareWindow");
         corect = root.Q("CorectWindow");
         gresit = root.Q("GresitWindow");
+        calibrare = root.Q("CalibrareWindow");
 
         currentScreen = startPage;
         currentScreen.style.display = DisplayStyle.Flex;
 
-        startPage.Q<Button>("StartButton").clicked += () =>
+        startPage.Q<UnityEngine.UIElements.Button>("StartButton").clicked += () =>
         {
             startCallBack.Invoke();
         };
 
-        corect.Q<Button>("NextQuestion").clicked += () =>
+        corect.Q<UnityEngine.UIElements.Button>("NextQuestion").clicked += () =>
         {
             nextCallBack.Invoke();
         };
 
-        gresit.Q<Button>("NextQuestion").clicked += () =>
+        gresit.Q<UnityEngine.UIElements.Button>("NextQuestion").clicked += () =>
         {
             nextCallBack.Invoke();
         };
@@ -48,21 +55,28 @@ public class UILogic : MonoBehaviour
     public void DisplayQuestion(Parser.Question  question, ButtonPressedCallBack callBack)
     {
         ChangeScreen(intrebare);
-        for(int i=1; i<=4; i++){
-            var button = intrebare.Q<Button>("Button"+i.ToString());
+        for(int i=0; i<4; i++){
+            lbut[i].gameObject.SetActive(true);
+            lgam[i].SetActive(true);
             int ans = i; // We need this because otherwise C# will take the "i" by reference and all the callbacks will be called with 5
-            button.clicked += () =>
+            lbut[i].onClick.AddListener(delegate ()
             {
                 callBack.Invoke(ans);
-            };
-            button.text = question.answers[i-1];
+            });
+            lbut[i].GetComponentInChildren<Text>().text = question.answers[i];
         }
         var textIntrebare = intrebare.Q<Label>("Label");
         textIntrebare.text = question.question;
+
     }
 
     public void ChangeScreen(VisualElement newScreen)
     {
+        for(int i=0;i<4;i++)
+        {
+            lbut[i].gameObject.SetActive(false);
+            lgam[i].SetActive(false);
+        }
         currentScreen.style.display = DisplayStyle.None;
         newScreen.style.display = DisplayStyle.Flex;
         currentScreen = newScreen;
