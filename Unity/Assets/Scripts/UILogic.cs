@@ -14,12 +14,17 @@ public class UILogic : MonoBehaviour
     public VisualElement intrebare;
     public VisualElement corect;
     public VisualElement gresit;
+    public VisualElement endPage;
     public VisualElement calibrare;
 
     public List<GameObject> lgam = new List<GameObject>(4);
     public List<UnityEngine.UI.Button> lbut = new List<UnityEngine.UI.Button>(4);
 
     private VisualElement currentScreen;
+
+    [SerializeField]
+    public Sprite[] confetiAnim;
+    private int currentConfetiIndex = 0;
 
     public void Init(SimpleCallBack startCallBack, SimpleCallBack nextCallBack)
     {
@@ -29,6 +34,7 @@ public class UILogic : MonoBehaviour
         intrebare = root.Q("IntrebareWindow");
         corect = root.Q("CorectWindow");
         gresit = root.Q("GresitWindow");
+        endPage = root.Q("FinishPage");
         calibrare = root.Q("CalibrareWindow");
 
         currentScreen = startPage;
@@ -80,5 +86,42 @@ public class UILogic : MonoBehaviour
         currentScreen.style.display = DisplayStyle.None;
         newScreen.style.display = DisplayStyle.Flex;
         currentScreen = newScreen;
+
+        if(currentScreen == endPage){
+            StartCoroutine(AnimateConfeti());
+            StartCoroutine(MoveConfeti());
+        }
+    }
+
+    private IEnumerator AnimateConfeti()
+    {
+        VisualElement confeti1 = endPage.Q("confeti1");
+        VisualElement confeti2 = endPage.Q("confeti2");
+
+        foreach(var sprite in confetiAnim){
+            confeti1.style.backgroundImage = new StyleBackground(sprite);
+            confeti2.style.backgroundImage = new StyleBackground(sprite);
+
+            yield return new WaitForSeconds(0.3f);
+        }
+    }
+
+    private IEnumerator MoveConfeti()
+    {
+        VisualElement confeti1 = endPage.Q("confeti1");
+        VisualElement confeti2 = endPage.Q("confeti2");
+
+        float posC1B = 160f;
+
+        float posC2B = 155f;
+
+        while(posC1B >= 0f && posC2B >= 0f){
+            confeti1.style.bottom = posC1B;
+            posC1B -= 113*Time.deltaTime;
+
+            confeti2.style.bottom = posC2B;
+            posC2B -= 105*Time.deltaTime;
+            yield return null;
+        }
     }
 }
