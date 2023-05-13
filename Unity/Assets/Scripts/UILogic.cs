@@ -5,12 +5,12 @@ using UnityEngine.UIElements;
 
 public class UILogic : MonoBehaviour
 {
-    private VisualElement intrebare;
-    private VisualElement corect;
-    private VisualElement gresit;
-    private int raspuns;
+    public VisualElement intrebare;
+    public VisualElement corect;
+    public VisualElement gresit;
+    public int raspuns;
 
-    private void Start()
+    public void Init()
     {
         raspuns = 0;
         // root-ul documentului UI
@@ -25,7 +25,7 @@ public class UILogic : MonoBehaviour
         intrebare.Q<Button>("Button1").clicked += () =>
         {
             intrebare.style.display = DisplayStyle.None;
-            if (raspuns == 1) 
+            if (raspuns == 1)
             {
                 corect.style.display = DisplayStyle.Flex;
             }
@@ -83,6 +83,5 @@ public class UILogic : MonoBehaviour
             intrebare.style.display = DisplayStyle.Flex;
             gresit.style.display = DisplayStyle.None;
         };
-
     }
 }
