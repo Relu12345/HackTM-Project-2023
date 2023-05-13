@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json.Bson;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
@@ -65,6 +66,7 @@ public class UILogic : MonoBehaviour
             lbut[i].gameObject.SetActive(true);
             lgam[i].SetActive(true);
             int ans = i; // We need this because otherwise C# will take the "i" by reference and all the callbacks will be called with 5
+            lbut[i].onClick.RemoveAllListeners();
             lbut[i].onClick.AddListener(delegate ()
             {
                 callBack.Invoke(ans);
@@ -74,6 +76,22 @@ public class UILogic : MonoBehaviour
         var textIntrebare = intrebare.Q<Label>("Label");
         textIntrebare.text = question.question;
 
+    }
+
+    public void stopGame(int correct)
+    {
+        StartCoroutine(AnimateConfeti());
+        StartCoroutine(MoveConfeti());
+        endPage.Q<Label>("Answers").text = correct + "/5";
+        endPage.Q<Label>("Points").text = (correct * 10).ToString();
+        endPage.Q<UnityEngine.UIElements.Button>("RestartButton").clicked += () =>
+        {
+            SceneManager.LoadScene(0);
+        };
+        endPage.Q<UnityEngine.UIElements.Button>("FactsButton").clicked += () =>
+        {
+            //In the next episode
+        };
     }
 
     public void ChangeScreen(VisualElement newScreen)
@@ -86,11 +104,6 @@ public class UILogic : MonoBehaviour
         currentScreen.style.display = DisplayStyle.None;
         newScreen.style.display = DisplayStyle.Flex;
         currentScreen = newScreen;
-
-        if(currentScreen == endPage){
-            StartCoroutine(AnimateConfeti());
-            StartCoroutine(MoveConfeti());
-        }
     }
 
     private IEnumerator AnimateConfeti()
