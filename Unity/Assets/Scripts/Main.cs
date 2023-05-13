@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
+using UnityEngine.UIElements;
 
 public class Main : MonoBehaviour
 {
@@ -22,6 +24,8 @@ public class Main : MonoBehaviour
     private int currQuest = 0;
     private int correct = 0;
 
+    private GPS.Location currentLocation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,17 +38,22 @@ public class Main : MonoBehaviour
         uILogic.Init(StartButton, NextQuestion);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void StartButton()
     {
-        uILogic.ChangeScreen(uILogic.calibrare);
-        BCI.SetActive(true);
-        BCImgr.SetActive(true);
+        // currentLocation = gps.GetLocation();
+        currentLocation = new GPS.Location("Budapesta", "Hungary");
+
+        if(currentLocation.success){
+            // SendGetRequest(currentLocation);
+            //ToDo
+            // Load all the questions here asyncron
+            uILogic.ChangeScreen(uILogic.calibrare);
+            BCI.SetActive(true);
+            BCImgr.SetActive(true);
+        }
+        else{
+            //Display error screen
+        }
     }
 
     public async void StartQuiz()
@@ -53,9 +62,9 @@ public class Main : MonoBehaviour
         BCI.SetActive(false);
         currentQuestion = Parser.parseQuestion("{#question#:#Used in ancient times by the poet Tibullus, The Eternal City is a nickname given to what European capital?#, #answers#:{#1#:#Venice#,#2#:#Tivoli#,#3#:#Rome#,#4#:#Siena#},#correct#:3}");
 
-        //var r = await aIController.GetResponse("Timisoara, Romania");
+        // var r = await aIController.GetResponse(currentLocation.getFormated());
 
-        //currentQuestion = Parser.parseQuestion(r);
+        // currentQuestion = Parser.parseQuestion(r);
         uILogic.DisplayQuestion(currentQuestion, buttonPressed);
         // Debug.Log(r);
        
@@ -80,17 +89,24 @@ public class Main : MonoBehaviour
         
     }
 
-
     void buttonPressed(int userAnswer)
     {
         if(userAnswer == currentQuestion.correctAnswer){
             uILogic.ChangeScreen(uILogic.corect);
+            uILogic.corect.Q<Label>("Value").text = Convert.ToChar(currentQuestion.correctAnswer + 97) + ") " + currentQuestion.answers[currentQuestion.correctAnswer];
             correct++;
             Debug.Log(correct);
         }
         else{
             uILogic.ChangeScreen(uILogic.gresit);
+            uILogic.gresit.Q<Label>("Value").text = Convert.ToChar(currentQuestion.correctAnswer + 97) + ") " + currentQuestion.answers[currentQuestion.correctAnswer];
         }
+    }
+
+    private void SendGetRequest(GPS.Location location)
+    {
+        var request = UnityWebRequest.Get(String.Format("http://92.87.91.85:3000/buffer/{0}/{1}", location.city, location.country));
+        request.SendWebRequest();
     }
 
 }
