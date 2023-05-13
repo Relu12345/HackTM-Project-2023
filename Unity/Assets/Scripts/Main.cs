@@ -44,7 +44,7 @@ public class Main : MonoBehaviour
         currentLocation = new GPS.Location("Budapesta", "Hungary");
 
         if(currentLocation.success){
-            SendGetRequest(currentLocation);
+            // SendGetRequest(currentLocation);
             //ToDo
             // Load all the questions here asyncron
             uILogic.ChangeScreen(uILogic.calibrare);
