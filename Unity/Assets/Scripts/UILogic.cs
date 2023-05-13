@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json.Bson;
@@ -71,7 +72,7 @@ public class UILogic : MonoBehaviour
             {
                 callBack.Invoke(ans);
             });
-            lbut[i].GetComponentInChildren<Text>().text = question.answers[i];
+            lbut[i].GetComponentInChildren<Text>().text = Convert.ToChar(i + 97) + ") " + question.answers[i];
         }
         var textIntrebare = intrebare.Q<Label>("Label");
         textIntrebare.text = question.question;
