@@ -1,8 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:VisualElement style="flex-grow: 1;">
-        <ui:VisualElement style="-unity-background-image-tint-color: rgb(0, 0, 0); flex-grow: 1; background-color: rgb(255, 0, 12); align-items: center; justify-content: center;">
-            <ui:Label text="GRESIT, SEFU" display-tooltip-when-elided="true" style="justify-content: center; align-items: center; color: rgb(0, 0, 0); font-size: 40px;" />
-            <ui:Button text="Next" display-tooltip-when-elided="true" name="NextQuestion" />
-        </ui:VisualElement>
+    <ui:VisualElement style="flex-grow: 1; align-items: center;">
+        <ui:Button display-tooltip-when-elided="true" name="NextQuestion" style="background-image: url(&apos;project://database/Assets/Images/buton_continue.png?fileID=2800000&amp;guid=53987b1170f401d4ab194277946bcf60&amp;type=3#buton_continue&apos;); width: 233px; height: auto; -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/Montserrat-Regular.ttf?fileID=12800000&amp;guid=5951844d5edc55c468cf13105f30aad0&amp;type=3#Montserrat-Regular&apos;); font-size: 16px; background-color: rgb(255, 255, 255); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
     </ui:VisualElement>
 </ui:UXML>

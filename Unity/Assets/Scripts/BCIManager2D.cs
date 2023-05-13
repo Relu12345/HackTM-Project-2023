@@ -32,6 +32,8 @@ namespace Gtec.UnityInterface
         private System.Diagnostics.Stopwatch _sw;
         private int _flashingDelayMs = 1000;
 
+        public GameObject calGraphics, calText;
+
         void Start()
         {
             _sw = new System.Diagnostics.Stopwatch();
@@ -128,6 +130,8 @@ namespace Gtec.UnityInterface
                 _classifierCalculated = false;
                 CVEPBCIManager.Instance.Train();
             }
+            calGraphics.SetActive(false);
+            calText.SetActive(false);
         }
 
         private void OnModeChanged(object sender, ModeChangedEventArgs e)
