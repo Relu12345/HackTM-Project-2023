@@ -17,16 +17,17 @@ public class Main : MonoBehaviour
     private UILogic uILogic;
 
     private Parser.Question currentQuestion;
+    public GameObject BCI, BCImgr;
 
     // Start is called before the first frame update
     void Start()
     {
-        aIController = GetComponent<AIController>();
+        //aIController = GetComponent<AIController>();
         gps = GetComponent<GPS>();
         uILogic = GetComponent<UILogic>();
 
         gps.Init();
-        aIController.Init();
+        //aIController.Init();
         uILogic.Init(StartButton, NextQuestion);
     }
 
@@ -36,13 +37,21 @@ public class Main : MonoBehaviour
         
     }
 
-    async void StartButton()
+    void StartButton()
     {
-        // currentQuestion = Parser.parseQuestion("{#question#:#Used in ancient times by the poet Tibullus, The Eternal City is a nickname given to what European capital?#, #answers#:{#1#:#Venice#,#2#:#Tivoli#,#3#:#Rome#,#4#:#Siena#},#correct#:3}");
+        uILogic.ChangeScreen(uILogic.calibrare);
+        BCI.SetActive(true);
+        BCImgr.SetActive(true);
+    }
 
-        var r = await aIController.GetResponse("Timisoara, Romania");
+    public async void StartQuiz()
+    {
+        BCI.SetActive(false);
+        currentQuestion = Parser.parseQuestion("{#question#:#Used in ancient times by the poet Tibullus, The Eternal City is a nickname given to what European capital?#, #answers#:{#1#:#Venice#,#2#:#Tivoli#,#3#:#Rome#,#4#:#Siena#},#correct#:3}");
 
-        currentQuestion = Parser.parseQuestion(r);
+        //var r = await aIController.GetResponse("Timisoara, Romania");
+
+        //currentQuestion = Parser.parseQuestion(r);
         uILogic.DisplayQuestion(currentQuestion, buttonPressed);
         // Debug.Log(r);
        
@@ -50,9 +59,9 @@ public class Main : MonoBehaviour
 
     async void NextQuestion()
     {
-        var r = await aIController.GetResponse("Baia Mare, Romania");
+        //var r = await aIController.GetResponse("Baia Mare, Romania");
 
-        currentQuestion = Parser.parseQuestion(r);
+        //currentQuestion = Parser.parseQuestion(r);
         uILogic.DisplayQuestion(currentQuestion, buttonPressed);
     }
 

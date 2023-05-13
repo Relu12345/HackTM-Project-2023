@@ -2,28 +2,19 @@ using Gtec.Chain.Common.Nodes.Utilities.CVEPCCA;
 using Gtec.Chain.Common.Nodes.Utilities.LDA;
 using Gtec.Chain.Common.SignalProcessingPipelines;
 using Gtec.Chain.Common.Templates.Utilities;
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using static Gtec.Chain.Common.SignalProcessingPipelines.CVEPPipeline;
 using static Gtec.Chain.Common.Templates.DataAcquisitionUnit.DataAcquisitionUnit;
 using static Gtec.UnityInterface.CVEPBCIManager;
-using Random = UnityEngine.Random;
 
 namespace Gtec.UnityInterface
 {
     public class BCIManager2D : MonoBehaviour
     {
         private CVEPFlashController2D _flashController;
-        private Dictionary<int, SpriteRenderer> _selectedObjects;
-        public Sprite[] sprites;
         private Canvas _cvTraining;
         private Canvas _cvConnectionDialog;
         private Canvas _cvTrainingCompletedDialog;
@@ -32,8 +23,6 @@ namespace Gtec.UnityInterface
         private TrainingCompletedDialog _trainingCompletedDialog;
         private States _currentState;
         private CVEPPipeline.Mode _currentMode;
-        private GameObject Camera;
-        public GameObject player, Zombie;
         private bool _connectionStateChanged;
         private bool _modeChanged;
         private bool _classifierCalculated;
@@ -42,13 +31,6 @@ namespace Gtec.UnityInterface
         private bool _startFlashing;
         private System.Diagnostics.Stopwatch _sw;
         private int _flashingDelayMs = 1000;
-        private bool timp_on = false;
-        private float timp = 120f;
-        public Text text_timp;
-        void Awake()
-        {
-            Camera = GameObject.Find("Main Camera");
-        }
 
         void Start()
         {
@@ -218,78 +200,14 @@ namespace Gtec.UnityInterface
             _trainingDialog.Reset();
         }
 
-        private CVEPFlashObject2D Spawn_Zomb(int id)
-        {
-            GameObject clone = Instantiate(Zombie, new Vector3(Random.Range(61.5f, 207.1f), Random.Range(-26.5f, -89.2f), 0), Quaternion.identity);
-            CVEPFlashObject2D clone_smk;
-            clone_smk.ClassId = id;
-            clone_smk.Rotate = true;
-            clone_smk.GameObject = clone;
-            clone_smk.DarkSprite = sprites[0];
-            clone_smk.FlashSprite = sprites[1];
-            clone.SetActive(true);
-            return clone_smk;
-        }
-
         private void OnBtnContinue_Click(object sender, EventArgs e)
         {
-            timp_on = true;
             CVEPBCIManager.Instance.Configure(CVEPPipeline.Mode.Application);
-            Camera.transform.position = new Vector3(118, -48f, -10);
-            List<CVEPFlashObject2D> list = new List<CVEPFlashObject2D>();
-            CVEPFlashObject2D zomb;
-            int numbers = 2;
-            while(numbers <= 27)
-            {
-                zomb = Spawn_Zomb(++numbers);
-                list.Add(zomb);
-            }
-            _selectedObjects = new Dictionary<int, SpriteRenderer>();
-            foreach (CVEPFlashObject2D applicationObject in list)
-            {
-                _flashController.ApplicationObjects.Add(applicationObject);
-            }
-            List<CVEPFlashObject2D> applicationObjects = _flashController.ApplicationObjects;
-            foreach (CVEPFlashObject2D applicationObject in applicationObjects)
-            {
-                SpriteRenderer[] spriteRenderers = applicationObject.GameObject.GetComponentsInChildren<SpriteRenderer>();
-                foreach (SpriteRenderer spriteRenderer in spriteRenderers)
-                {
-                    if (spriteRenderer.name.Contains("Selected"))
-                    {
-                        _selectedObjects.Add(applicationObject.ClassId, spriteRenderer);
-                        applicationObject.GameObject.SetActive(false);
-                    }
-                }
-            }
-            Debug.Log(_selectedObjects.Keys.Count);
-            player.SetActive(true);
-            Camera.transform.parent = player.transform;
             _startFlashing = true;
-            
-
-        }
-
-        void updateTimer(float currentTime)
-        {
-            currentTime += 1;
-            float minutes = Mathf.FloorToInt(currentTime / 60);
-            float seconds = Mathf.FloorToInt(currentTime % 60);
-
-            text_timp.text = string.Format("{0:00} : {1:00}", minutes, seconds);
         }
 
         void Update()
         {
-            if (timp_on)
-            {
-                timp -= Time.deltaTime;
-                updateTimer(timp);
-            }
-            if(timp <= 0)
-            {
-                SceneManager.LoadScene(1);
-            }
             //show/hide connection dialog
             if (_connectionStateChanged || _modeChanged)
             {
