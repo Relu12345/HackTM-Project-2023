@@ -748,7 +748,7 @@ PrefabInstance:
     - target: {fileID: 6643518265617480674, guid: c7f072b7cff6497459abed6f21030fa2, type: 3}
       propertyPath: TrainingObject.DarkSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 5a736e45a1d0de84385512d4f2a2c305, type: 3}
+      objectReference: {fileID: 21300000, guid: a09c570a92a48f04c91c600faf083562, type: 3}
     - target: {fileID: 6643518265617480674, guid: c7f072b7cff6497459abed6f21030fa2, type: 3}
       propertyPath: TrainingObject.GameObject
       value: 
@@ -788,7 +788,7 @@ PrefabInstance:
     - target: {fileID: 6643518265617480674, guid: c7f072b7cff6497459abed6f21030fa2, type: 3}
       propertyPath: ApplicationObjects.Array.data[0].DarkSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 5a736e45a1d0de84385512d4f2a2c305, type: 3}
+      objectReference: {fileID: 21300000, guid: a09c570a92a48f04c91c600faf083562, type: 3}
     - target: {fileID: 6643518265617480674, guid: c7f072b7cff6497459abed6f21030fa2, type: 3}
       propertyPath: ApplicationObjects.Array.data[0].GameObject
       value: 
@@ -796,7 +796,7 @@ PrefabInstance:
     - target: {fileID: 6643518265617480674, guid: c7f072b7cff6497459abed6f21030fa2, type: 3}
       propertyPath: ApplicationObjects.Array.data[1].DarkSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 5a736e45a1d0de84385512d4f2a2c305, type: 3}
+      objectReference: {fileID: 21300000, guid: a09c570a92a48f04c91c600faf083562, type: 3}
     - target: {fileID: 6643518265617480674, guid: c7f072b7cff6497459abed6f21030fa2, type: 3}
       propertyPath: ApplicationObjects.Array.data[1].GameObject
       value: 
@@ -804,7 +804,7 @@ PrefabInstance:
     - target: {fileID: 6643518265617480674, guid: c7f072b7cff6497459abed6f21030fa2, type: 3}
       propertyPath: ApplicationObjects.Array.data[2].DarkSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 5a736e45a1d0de84385512d4f2a2c305, type: 3}
+      objectReference: {fileID: 21300000, guid: a09c570a92a48f04c91c600faf083562, type: 3}
     - target: {fileID: 6643518265617480674, guid: c7f072b7cff6497459abed6f21030fa2, type: 3}
       propertyPath: ApplicationObjects.Array.data[2].GameObject
       value: 
@@ -812,7 +812,7 @@ PrefabInstance:
     - target: {fileID: 6643518265617480674, guid: c7f072b7cff6497459abed6f21030fa2, type: 3}
       propertyPath: ApplicationObjects.Array.data[3].DarkSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 5a736e45a1d0de84385512d4f2a2c305, type: 3}
+      objectReference: {fileID: 21300000, guid: a09c570a92a48f04c91c600faf083562, type: 3}
     - target: {fileID: 6643518265617480674, guid: c7f072b7cff6497459abed6f21030fa2, type: 3}
       propertyPath: ApplicationObjects.Array.data[3].GameObject
       value: 
