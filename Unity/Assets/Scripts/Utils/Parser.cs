@@ -4,36 +4,6 @@ using UnityEngine;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-/*
-
-{
-  "question": "text",
-  "answers": [
-    "1": "rasp1", 
-    "2": "rasp2", 
-    "3": "rasp3", 
-    "4": "rasp4"],
-  "correct": 1/2/3/4
-}
-
-example:
-
-{
-"question": "In what year did Timisoara become the first European city with electric street lighting?",
-"answers": {
-"1": "1868",
-"2": "1899",
-"3": "1884",
-"4": "1905"
-},
-"correct": 3
-}
-
-*/
-
-
-
-
 public class Parser : MonoBehaviour
 {
     public static Question parseQuestion(string aiResponse)

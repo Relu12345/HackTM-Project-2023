@@ -2176,6 +2176,12 @@ MonoBehaviour:
   - {fileID: 289900536}
   - {fileID: 2068808024}
   - {fileID: 620150187}
+  confetiAnim:
+  - {fileID: 21300000, guid: aa80ae15c0e75e4b5a5501183011c766, type: 3}
+  - {fileID: 21300000, guid: e3ae2d766dde858f58632ebf3f4d09d7, type: 3}
+  - {fileID: 21300000, guid: 56243ed82583ae2b496665851261a93a, type: 3}
+  - {fileID: 21300000, guid: d589df4383e1637dc80afbc342297ef4, type: 3}
+  - {fileID: 21300000, guid: 5f4d00793ffd0a0fbaabad136087fd24, type: 3}
 --- !u!114 &1977220627
 MonoBehaviour:
   m_ObjectHideFlags: 0

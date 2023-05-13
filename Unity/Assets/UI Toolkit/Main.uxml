@@ -3,10 +3,12 @@
     <ui:Template name="IntrebareWindow" src="project://database/Assets/UI%20Toolkit/IntrebareWindow.uxml?fileID=9197481963319205126&amp;guid=41238827cbf50b846833e4591b18b526&amp;type=3#IntrebareWindow" />
     <ui:Template name="CorectWindow" src="project://database/Assets/UI%20Toolkit/CorectWindow.uxml?fileID=9197481963319205126&amp;guid=f0054210b0914c84fbf95d3e5e285476&amp;type=3#CorectWindow" />
     <ui:Template name="GresitWindow" src="project://database/Assets/UI%20Toolkit/GresitWindow.uxml?fileID=9197481963319205126&amp;guid=19e75ee415eea834f9500b954a9da596&amp;type=3#GresitWindow" />
+    <ui:Template name="FinishPage" src="project://database/Assets/UI%20Toolkit/FinishPage.uxml?fileID=9197481963319205126&amp;guid=bd6af6d40c9951c74834343cec859aaa&amp;type=3#FinishPage" />
     <ui:Template name="CalibrareWindow" src="project://database/Assets/UI%20Toolkit/CalibrareWindow.uxml?fileID=9197481963319205126&amp;guid=f873f4c9ed6568340ba615377c0abc39&amp;type=3#CalibrareWindow" />
     <ui:Instance template="StartPage" name="StartPage" style="width: 100%; height: 100%; display: none;" />
     <ui:Instance template="IntrebareWindow" name="IntrebareWindow" style="width: 100%; height: 100%; display: none;" />
     <ui:Instance template="CorectWindow" name="CorectWindow" style="width: 100%; height: 100%; display: none;" />
     <ui:Instance template="GresitWindow" name="GresitWindow" style="display: none; width: 100%; height: 100%;" />
+    <ui:Instance template="FinishPage" name="FinishPage" style="display: none; width: 100%; height: 100%;" />
     <ui:Instance template="CalibrareWindow" name="CalibrareWindow" style="width: 100%; height: 100%; display: none;" />
 </ui:UXML>
