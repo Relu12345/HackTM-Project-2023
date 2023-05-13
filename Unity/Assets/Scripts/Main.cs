@@ -36,7 +36,11 @@ public class Main : MonoBehaviour
 
     void StartButton()
     {
-        currentQuestion = Parser.parseQuestion("{\"question\": \"In what year did Timisoara become the first European city with electric street lighting?\",\"answers\": {\"1\": \"1868\",\"2\": \"1899\",\"3\": \"1884\",\"4\": \"1905\"},\"correct\": 3}");
+        currentQuestion = Parser.parseQuestion("{#question#:#Used in ancient times by the poet Tibullus, The Eternal City is a nickname given to what European capital?#, #answers#:{#1#:#Venice#,#2#:#Tivoli#,#3#:#Rome#,#4#:#Siena#},#correct#:3}");
+
+        // var r = aIController.GetResponse("Timisoara, Romania");
+
+        // Debug.Log(r);
 
         uILogic.DisplayQuestion(currentQuestion, buttonPressed);
     }

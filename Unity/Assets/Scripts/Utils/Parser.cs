@@ -38,7 +38,9 @@ public class Parser : MonoBehaviour
 {
     public static Question parseQuestion(string aiResponse)
     {
-        var jsonD = JObject.Parse(aiResponse);
+        string replacedStr = aiResponse.Replace('#', '\"');
+
+        var jsonD = JObject.Parse(replacedStr);
 
         var question = (string)jsonD["question"];
         var answers = (JObject)jsonD["answers"];
