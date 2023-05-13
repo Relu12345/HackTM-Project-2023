@@ -24,6 +24,7 @@ public class UILogic : MonoBehaviour
 
         // ToDo switch with StartScreen 
         currentScreen = intrebare;
+        intrebare.style.display = DisplayStyle.Flex;
 
         corect.Q<Button>("NextQuestion").clicked += () =>
         {
