@@ -90,7 +90,7 @@ public class UILogic : MonoBehaviour
         };
         endPage.Q<UnityEngine.UIElements.Button>("FactsButton").clicked += () =>
         {
-            //In the next episode
+            Application.OpenURL("http://92.87.91.85:3001/");
         };
     }
 

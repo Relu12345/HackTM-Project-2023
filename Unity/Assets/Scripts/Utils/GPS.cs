@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Net;
-
+using System;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.UI;
@@ -94,6 +94,10 @@ public class GPS : MonoBehaviour
             city = _city;
             country = _country;
             success = true;
+        }
+
+        public string getFormated(){
+            return String.Format("{0}, {1}", city, country);
         }
     }
 }
