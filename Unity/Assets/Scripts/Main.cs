@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class Main : MonoBehaviour
 {
@@ -85,11 +86,13 @@ public class Main : MonoBehaviour
     {
         if(userAnswer == currentQuestion.correctAnswer){
             uILogic.ChangeScreen(uILogic.corect);
+            uILogic.corect.Q<Label>("Value").text = Convert.ToChar(currentQuestion.correctAnswer + 97) + ") " + currentQuestion.answers[currentQuestion.correctAnswer];
             correct++;
             Debug.Log(correct);
         }
         else{
             uILogic.ChangeScreen(uILogic.gresit);
+            uILogic.gresit.Q<Label>("Value").text = Convert.ToChar(currentQuestion.correctAnswer + 97) + ") " + currentQuestion.answers[currentQuestion.correctAnswer];
         }
     }
 

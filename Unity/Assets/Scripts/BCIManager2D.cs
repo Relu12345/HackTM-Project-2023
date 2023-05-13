@@ -231,6 +231,8 @@ namespace Gtec.UnityInterface
                 {
                     if (_currentMode == CVEPPipeline.Mode.Training)
                     {
+                        calGraphics.SetActive(true);
+                        calText.SetActive(true);
                         _cvConnectionDialog.gameObject.SetActive(false);
                         _cvTraining.gameObject.SetActive(true);
                         _cvTrainingCompletedDialog.gameObject.SetActive(false);
