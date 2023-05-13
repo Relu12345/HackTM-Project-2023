@@ -44,6 +44,8 @@ public class AIController : MonoBehaviour
             chat.AppendUserInput(example.input);
             chat.AppendExampleChatbotOutput(example.output);
         }
+
+        Debug.Log("AI initialized");
     }
 
     public async Task<string> GetResponse(string input)

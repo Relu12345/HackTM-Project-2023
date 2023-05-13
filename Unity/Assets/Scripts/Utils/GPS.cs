@@ -59,6 +59,7 @@ public class GPS : MonoBehaviour
         if (Input.location.status == LocationServiceStatus.Running)
         {
             initialized = true;
+            Debug.Log("GPS initialized");
             return;
         }
 
@@ -79,7 +80,6 @@ public class GPS : MonoBehaviour
         var jsonData = new WebClient().DownloadString(link);
         var jsonD = JObject.Parse(jsonData);
 
-        string json = JsonConvert.SerializeObject(jsonData);
         var address = (JObject)jsonD["address"];
         var oras = (string)address["city"];
         var tara = (string)address["country"];
