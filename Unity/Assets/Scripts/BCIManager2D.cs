@@ -239,6 +239,8 @@ namespace Gtec.UnityInterface
                     _cvConnectionDialog.gameObject.SetActive(true);
                     _cvTraining.gameObject.SetActive(false);
                     _cvTrainingCompletedDialog.gameObject.SetActive(false);
+                    calGraphics.SetActive(false);
+                    calText.SetActive(false);
                 }
                 else if (_currentState == States.Connecting)
                 {
@@ -253,12 +255,16 @@ namespace Gtec.UnityInterface
                         _cvConnectionDialog.gameObject.SetActive(false);
                         _cvTraining.gameObject.SetActive(true);
                         _cvTrainingCompletedDialog.gameObject.SetActive(false);
+                        calGraphics.SetActive(true);
+                        calText.SetActive(true);
                     }
                     else
                     {
                         _cvConnectionDialog.gameObject.SetActive(false);
                         _cvTraining.gameObject.SetActive(false);
                         _cvTrainingCompletedDialog.gameObject.SetActive(false);
+                        calGraphics.SetActive(false);
+                        calText.SetActive(false);
                     }
                 }
                 _connectionStateChanged = false;
