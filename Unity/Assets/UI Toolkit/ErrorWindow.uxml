@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center; background-color: rgb(246, 246, 246);">
+        <ui:GroupBox style="width: 100%; height: 100%; align-items: center; padding-top: 20px; padding-bottom: 50px; -unity-text-align: upper-center; justify-content: center; -unity-background-scale-mode: scale-to-fit;">
+            <ui:VisualElement style="flex-direction: row-reverse; width: 100%;">
+                <ui:VisualElement style="margin-right: 0; margin-left: 20px; height: 100px; top: 50px;">
+                    <ui:Label text="Opps....!!!" display-tooltip-when-elided="true" style="padding-top: 0; font-size: 24px; padding-bottom: 0; -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/Montserrat-Bold.ttf?fileID=12800000&amp;guid=cd3df62b5afa23345af5dadba0751960&amp;type=3#Montserrat-Bold&apos;); color: rgb(0, 0, 0); -unity-text-align: lower-left; align-items: auto; flex-direction: column;" />
+                    <ui:Label text="Something went wrong" display-tooltip-when-elided="true" style="padding-top: 0; font-size: 20px; padding-bottom: 0; -unity-font: url(&apos;project://database/Assets/Fonts/OpenSans-Regular.ttf?fileID=12800000&amp;guid=0743bfcd11d5856fdb25a1c7c9b3b64b&amp;type=3#OpenSans-Regular&apos;); color: rgb(0, 0, 0); -unity-text-align: lower-left; align-items: flex-start; flex-direction: column;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="background-image: url(&apos;project://database/Assets/error_semn.png?fileID=21300000&amp;guid=0489a8715291b43499ed79c77a149584&amp;type=3#error_semn&apos;); flex-grow: 0; height: 251px; width: 138px; min-height: 30%; align-items: center; -unity-background-scale-mode: scale-to-fit; flex-direction: column-reverse; justify-content: flex-start;" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-direction: row; align-items: stretch; justify-content: center; margin-bottom: 20px; margin-top: 10px; flex-wrap: nowrap; width: 40%; max-height: none; max-width: none;">
+                <ui:Label display-tooltip-when-elided="true" name="Value" style="font-size: 20px; -unity-font: url(&apos;project://database/Assets/Fonts/OpenSans-Regular.ttf?fileID=12800000&amp;guid=0743bfcd11d5856fdb25a1c7c9b3b64b&amp;type=3#OpenSans-Regular&apos;); color: rgb(0, 0, 0); justify-content: space-between; align-items: center;" />
+            </ui:VisualElement>
+            <ui:Button display-tooltip-when-elided="true" name="NextQuestion" text="Retry" style="background-image: url(&apos;project://database/Assets/Images/buton1.png?fileID=21300000&amp;guid=a09c570a92a48f04c91c600faf083562&amp;type=3#buton1&apos;); width: 100%; height: auto; -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/Montserrat-Regular.ttf?fileID=12800000&amp;guid=5951844d5edc55c468cf13105f30aad0&amp;type=3#Montserrat-Regular&apos;); font-size: 16px; background-color: rgb(255, 255, 255); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; -unity-background-scale-mode: scale-to-fit; padding-top: 15px; margin-top: 60px; padding-bottom: 15px; color: rgb(242, 242, 242);" />
+        </ui:GroupBox>
+    </ui:VisualElement>
+</ui:UXML>

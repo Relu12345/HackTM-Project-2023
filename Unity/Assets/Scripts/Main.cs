@@ -130,8 +130,8 @@ public class Main : MonoBehaviour
         }
         else{
             uILogic.ChangeScreen(uILogic.gresit);
-            uILogic.gresit.Q<Label>("Value").text = Convert.ToChar(currentQuestion.correctAnswer - 1 + 97) + ") " + currentQuestion.answers[currentQuestion.correctAnswer - 1];
-            uILogic.gresit.Q<Label>("WValue").text = Convert.ToChar(userAnswer- 1 + 97) + ") " + currentQuestion.answers[userAnswer - 1];
+            uILogic.gresit.Q<Label>("Value").text = "Correct: " + Convert.ToChar(currentQuestion.correctAnswer - 1 + 97) + ") " + currentQuestion.answers[currentQuestion.correctAnswer - 1];
+            uILogic.gresit.Q<Label>("WValue").text = "Yours: " + Convert.ToChar(userAnswer- 1 + 97) + ") " + currentQuestion.answers[userAnswer - 1];
         }
     }
 
