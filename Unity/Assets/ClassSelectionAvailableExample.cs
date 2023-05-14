@@ -13,8 +13,8 @@ public class ClassSelectionAvailableExample : MonoBehaviour
 
     private readonly int maxSelectionCounter = 5;
 
-    private int selectionCounter = 0;
-    private int currentSelection = 0;
+    private uint selectionCounter = 0;
+    private uint currentSelection = 0;
 
     public Main main;
     void Start()
