@@ -68,7 +68,7 @@ public class UILogic : MonoBehaviour
         for(int i=0; i<4; i++){
             lbut[i].gameObject.SetActive(true);
             lgam[i].SetActive(true);
-            uint ans = (uint)i; // We need this because otherwise C# will take the "i" by reference and all the callbacks will be called with 5
+            uint ans = (uint)i+1; // We need this because otherwise C# will take the "i" by reference and all the callbacks will be called with 5
             lbut[i].onClick.RemoveAllListeners();
             lbut[i].onClick.AddListener(delegate ()
             {
