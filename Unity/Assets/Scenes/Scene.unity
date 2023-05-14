@@ -2805,6 +2805,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9782b9d0fe75fd49b93ee8997a252b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 0
+  completedQuestion: {fileID: 21300000, guid: 0752c26930cdba74ea89adf13ec045fd, type: 3}
   lgam:
   - {fileID: 1282245391}
   - {fileID: 1240360990}

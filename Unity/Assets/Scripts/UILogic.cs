@@ -19,7 +19,13 @@ public class UILogic : MonoBehaviour
     public VisualElement gresit;
     public VisualElement endPage;
     public VisualElement calibrare;
+    public VisualElement errorPage;
     public bool canSelect = false;
+
+    [SerializeField]
+    private Sprite completedQuestion;
+
+    private VisualElement[] dots;
 
     public List<GameObject> lgam = new List<GameObject>(4);
     public List<UnityEngine.UI.Button> lbut = new List<UnityEngine.UI.Button>(4);
@@ -40,6 +46,12 @@ public class UILogic : MonoBehaviour
         gresit = root.Q("GresitWindow");
         endPage = root.Q("FinishPage");
         calibrare = root.Q("CalibrareWindow");
+        errorPage = root.Q("ErrorWindow");
+
+        dots = new VisualElement[5];
+        for(int i=1; i<=5; i++){
+            dots[i-1] = intrebare.Q<VisualElement>("dot"+i);
+        }
 
         currentScreen = startPage;
         currentScreen.style.display = DisplayStyle.Flex;
@@ -115,6 +127,12 @@ public class UILogic : MonoBehaviour
         currentScreen = newScreen;
     }
 
+    public void UpdateDots(int index)
+    {
+        for(int i=0; i<index; i++){
+            dots[i].style.backgroundImage = new StyleBackground(completedQuestion);
+        }
+    }
     private IEnumerator AnimateConfeti()
     {
         VisualElement confeti1 = endPage.Q("confeti1");

@@ -94,6 +94,7 @@ public class Main : MonoBehaviour
 
         currentQuestion = Parser.parseQuestion(questions[currQuest-1]);
         uILogic.DisplayQuestion(currentQuestion, buttonPressed);
+        uILogic.UpdateDots(currQuest);
         // Debug.Log(r);
        
     }
@@ -105,6 +106,7 @@ public class Main : MonoBehaviour
             currentQuestion = Parser.parseQuestion(questions[currQuest-1]);
             uILogic.DisplayQuestion(currentQuestion, buttonPressed);
             currQuest++;
+            uILogic.UpdateDots(currQuest);
         }
         else
         {
