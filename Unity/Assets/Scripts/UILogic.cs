@@ -37,7 +37,7 @@ public class UILogic : MonoBehaviour
     public Sprite[] confetiAnim;
     private int currentConfetiIndex = 0;
 
-    public void Init(SimpleCallBack startCallBack, SimpleCallBack nextCallBack)
+    public void Init(SimpleCallBack startCallBack, SimpleCallBack startBCICallBack, SimpleCallBack nextCallBack)
     {
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
 
@@ -60,6 +60,11 @@ public class UILogic : MonoBehaviour
         startPage.Q<UnityEngine.UIElements.Button>("StartButton").clicked += () =>
         {
             startCallBack.Invoke();
+        };
+
+        startPage.Q<UnityEngine.UIElements.Button>("StartBCIButton").clicked += () =>
+        {
+            startBCICallBack.Invoke();
         };
 
         corect.Q<UnityEngine.UIElements.Button>("NextQuestion").clicked += () =>
@@ -101,7 +106,9 @@ public class UILogic : MonoBehaviour
 
     private async void enableSelection()
     {
-        await Task.Delay(1000);
+        if(!Main.SimpleMode){
+            await Task.Delay(1000);
+        }
         canSelect = true;
     }
 
