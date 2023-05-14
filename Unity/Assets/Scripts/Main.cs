@@ -85,8 +85,7 @@ public class Main : MonoBehaviour
         }
 
         if(!questionsInitialized){
-            // Display error
-            // return
+            uILogic.ChangeScreen(uILogic.errorPage);
         }
 
         currQuest = 1;
@@ -94,6 +93,7 @@ public class Main : MonoBehaviour
 
         currentQuestion = Parser.parseQuestion(questions[currQuest-1]);
         uILogic.DisplayQuestion(currentQuestion, buttonPressed);
+        uILogic.UpdateDots(currQuest);
         // Debug.Log(r);
        
     }
@@ -105,6 +105,7 @@ public class Main : MonoBehaviour
             currentQuestion = Parser.parseQuestion(questions[currQuest-1]);
             uILogic.DisplayQuestion(currentQuestion, buttonPressed);
             currQuest++;
+            uILogic.UpdateDots(currQuest);
         }
         else
         {
