@@ -262,7 +262,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 5951844d5edc55c468cf13105f30aad0, type: 3}
     m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
@@ -607,7 +607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2031150698576058896, guid: c7f072b7cff6497459abed6f21030fa2, type: 3}
       propertyPath: m_FontData.m_FontSize
-      value: 16
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 2089211679910297231, guid: c7f072b7cff6497459abed6f21030fa2, type: 3}
       propertyPath: m_LocalScale.x
@@ -932,7 +932,7 @@ PrefabInstance:
     - target: {fileID: 7496021437437081519, guid: c7f072b7cff6497459abed6f21030fa2, type: 3}
       propertyPath: TrainingObject.DarkSprite
       value: 
-      objectReference: {fileID: 21300000, guid: a09c570a92a48f04c91c600faf083562, type: 3}
+      objectReference: {fileID: 21300000, guid: b3821cc296ced4b42ae0d4d3e5603ccc, type: 3}
     - target: {fileID: 7496021437437081519, guid: c7f072b7cff6497459abed6f21030fa2, type: 3}
       propertyPath: TrainingObject.GameObject
       value: 
@@ -964,7 +964,7 @@ PrefabInstance:
     - target: {fileID: 7496021437437081519, guid: c7f072b7cff6497459abed6f21030fa2, type: 3}
       propertyPath: ApplicationObjects.Array.data[0].DarkSprite
       value: 
-      objectReference: {fileID: 21300000, guid: a09c570a92a48f04c91c600faf083562, type: 3}
+      objectReference: {fileID: 21300000, guid: b3821cc296ced4b42ae0d4d3e5603ccc, type: 3}
     - target: {fileID: 7496021437437081519, guid: c7f072b7cff6497459abed6f21030fa2, type: 3}
       propertyPath: ApplicationObjects.Array.data[0].GameObject
       value: 
@@ -972,7 +972,7 @@ PrefabInstance:
     - target: {fileID: 7496021437437081519, guid: c7f072b7cff6497459abed6f21030fa2, type: 3}
       propertyPath: ApplicationObjects.Array.data[1].DarkSprite
       value: 
-      objectReference: {fileID: 21300000, guid: a09c570a92a48f04c91c600faf083562, type: 3}
+      objectReference: {fileID: 21300000, guid: b3821cc296ced4b42ae0d4d3e5603ccc, type: 3}
     - target: {fileID: 7496021437437081519, guid: c7f072b7cff6497459abed6f21030fa2, type: 3}
       propertyPath: ApplicationObjects.Array.data[1].GameObject
       value: 
@@ -980,7 +980,7 @@ PrefabInstance:
     - target: {fileID: 7496021437437081519, guid: c7f072b7cff6497459abed6f21030fa2, type: 3}
       propertyPath: ApplicationObjects.Array.data[2].DarkSprite
       value: 
-      objectReference: {fileID: 21300000, guid: a09c570a92a48f04c91c600faf083562, type: 3}
+      objectReference: {fileID: 21300000, guid: b3821cc296ced4b42ae0d4d3e5603ccc, type: 3}
     - target: {fileID: 7496021437437081519, guid: c7f072b7cff6497459abed6f21030fa2, type: 3}
       propertyPath: ApplicationObjects.Array.data[2].GameObject
       value: 
@@ -988,7 +988,7 @@ PrefabInstance:
     - target: {fileID: 7496021437437081519, guid: c7f072b7cff6497459abed6f21030fa2, type: 3}
       propertyPath: ApplicationObjects.Array.data[3].DarkSprite
       value: 
-      objectReference: {fileID: 21300000, guid: a09c570a92a48f04c91c600faf083562, type: 3}
+      objectReference: {fileID: 21300000, guid: b3821cc296ced4b42ae0d4d3e5603ccc, type: 3}
     - target: {fileID: 7496021437437081519, guid: c7f072b7cff6497459abed6f21030fa2, type: 3}
       propertyPath: ApplicationObjects.Array.data[3].GameObject
       value: 
@@ -1508,6 +1508,7 @@ GameObject:
   m_Component:
   - component: {fileID: 717423076}
   - component: {fileID: 717423075}
+  - component: {fileID: 717423077}
   m_Layer: 0
   m_Name: GameObject3
   m_TagString: Untagged
@@ -1583,6 +1584,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &717423077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717423074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01102c2a134bd44c984814c42c2db55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  darkSprite: {fileID: 21300000, guid: b3821cc296ced4b42ae0d4d3e5603ccc, type: 3}
+  text: {fileID: 567794402}
 --- !u!1 &717902356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1953,6 +1968,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1142063847}
   - component: {fileID: 1142063846}
+  - component: {fileID: 1142063848}
   m_Layer: 0
   m_Name: GameObject4
   m_TagString: Untagged
@@ -2028,6 +2044,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1142063848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142063845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01102c2a134bd44c984814c42c2db55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  darkSprite: {fileID: 21300000, guid: b3821cc296ced4b42ae0d4d3e5603ccc, type: 3}
+  text: {fileID: 923373060}
 --- !u!1 &1160819173 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5646959743303543788, guid: c7f072b7cff6497459abed6f21030fa2, type: 3}
@@ -2068,6 +2098,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1240360992}
   - component: {fileID: 1240360991}
+  - component: {fileID: 1240360993}
   m_Layer: 0
   m_Name: GameObject2
   m_TagString: Untagged
@@ -2143,6 +2174,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1240360993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240360990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01102c2a134bd44c984814c42c2db55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  darkSprite: {fileID: 21300000, guid: b3821cc296ced4b42ae0d4d3e5603ccc, type: 3}
+  text: {fileID: 5073317}
 --- !u!1 &1282245391
 GameObject:
   m_ObjectHideFlags: 0
@@ -2153,6 +2198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1282245392}
   - component: {fileID: 1282245393}
+  - component: {fileID: 1282245394}
   m_Layer: 0
   m_Name: GameObject1
   m_TagString: Untagged
@@ -2228,6 +2274,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1282245394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282245391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01102c2a134bd44c984814c42c2db55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  darkSprite: {fileID: 21300000, guid: b3821cc296ced4b42ae0d4d3e5603ccc, type: 3}
+  text: {fileID: 1699632984}
 --- !u!1 &1316598645
 GameObject:
   m_ObjectHideFlags: 0
@@ -2273,6 +2333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1367867806}
   - component: {fileID: 1367867805}
+  - component: {fileID: 1367867807}
   m_Layer: 0
   m_Name: GameObjectTrain
   m_TagString: Untagged
@@ -2347,6 +2408,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1367867807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367867804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01102c2a134bd44c984814c42c2db55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  darkSprite: {fileID: 21300000, guid: b3821cc296ced4b42ae0d4d3e5603ccc, type: 3}
+  text: {fileID: 69117592}
 --- !u!1 &1620531975
 GameObject:
   m_ObjectHideFlags: 0
