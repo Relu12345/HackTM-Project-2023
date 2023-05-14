@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Newtonsoft.Json.Bson;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,7 +10,7 @@ using UnityEngine.UIElements;
 
 public class UILogic : MonoBehaviour
 {
-    public delegate void ButtonPressedCallBack(int answer);
+    public delegate void ButtonPressedCallBack(uint answer);
     public delegate void SimpleCallBack();
 
     public VisualElement startPage;
@@ -18,6 +19,7 @@ public class UILogic : MonoBehaviour
     public VisualElement gresit;
     public VisualElement endPage;
     public VisualElement calibrare;
+    public bool canSelect = false;
 
     public List<GameObject> lgam = new List<GameObject>(4);
     public List<UnityEngine.UI.Button> lbut = new List<UnityEngine.UI.Button>(4);
@@ -66,7 +68,7 @@ public class UILogic : MonoBehaviour
         for(int i=0; i<4; i++){
             lbut[i].gameObject.SetActive(true);
             lgam[i].SetActive(true);
-            int ans = i+1; // We need this because otherwise C# will take the "i" by reference and all the callbacks will be called with 5
+            uint ans = (uint)i+1; // We need this because otherwise C# will take the "i" by reference and all the callbacks will be called with 5
             lbut[i].onClick.RemoveAllListeners();
             lbut[i].onClick.AddListener(delegate ()
             {
@@ -76,7 +78,13 @@ public class UILogic : MonoBehaviour
         }
         var textIntrebare = intrebare.Q<Label>("Label");
         textIntrebare.text = question.question;
+        enableSelection();
+    }
 
+    private async void enableSelection()
+    {
+        await Task.Delay(1000);
+        canSelect = true;
     }
 
     public void stopGame(int correct)

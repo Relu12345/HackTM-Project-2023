@@ -115,8 +115,13 @@ public class Main : MonoBehaviour
         
     }
 
-    void buttonPressed(int userAnswer)
+    public void buttonPressed(uint userAnswer)
     {
+        if (!uILogic.canSelect)
+        {
+            return;
+        }
+        uILogic.canSelect = false;
         if(userAnswer == currentQuestion.correctAnswer){
             uILogic.ChangeScreen(uILogic.corect);
             uILogic.corect.Q<Label>("Value").text = Convert.ToChar(currentQuestion.correctAnswer -1 + 97) + ") " + currentQuestion.answers[currentQuestion.correctAnswer - 1];
