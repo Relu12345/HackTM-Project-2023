@@ -33,12 +33,12 @@ public class Main : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        aIController = GetComponent<AIController>();
+        // aIController = GetComponent<AIController>();
         gps = GetComponent<GPS>();
         uILogic = GetComponent<UILogic>();
 
         gps.Init();
-        aIController.Init();
+        // aIController.Init();
         uILogic.Init(StartButton, StartBCIButton, NextQuestion);
     }
 
@@ -87,9 +87,19 @@ public class Main : MonoBehaviour
     private async void LoadMessages(bool startQuiz)
     {
         questions = new string[5];
-        for(int i=0; i<2;i++){
-            questions[i] = await aIController.GetResponse(currentLocation.getFormated()); 
-        }
+
+        //Little Hack
+        questions[0] = "{#question#: #What Romanian city, known for its intricate pastel colored baroque buildings, was the first in Europe to have electric street lighting?#,#answers#: {#1#:#Brasov#,#2#: #Timisoara#,#3#: #Cluj-Napoca#,#4#: #Sibiu#},#correct#: 2}";
+        questions[1] = "{#question#: #What is the name of the large public square, located in the heart of Timisoara, which contains multiple fountains and green areas?#,#answers#: {#1#:#Piata Vadului#,#2#: #Piata Victoriei#,#3#: #Piata Unirii#,#4#: #Piata Libertatii#},#correct#: 3}";
+        questions[2] = "{#question#: #What Romanian revolution, which led to the downfall of the communist regime in Romania, began in Timisoara in December 1989?#,#answers#: {#1#:#Velvet Revolution#,#2#: #Orange Revolution#,#3#: #Rose Revolution#,#4#: #Timisoara Revolution#},#correct#: 4}";
+        questions[3] = "{#question#: #What is the name of the large indoor arena in Timisoara that hosts sports events and concerts, and has a seating capacity of over 10,000 people?#,#answers#: {#1#:#Polyvalent Hall#,#2#: #Olimpia Sports Hall#,#3#: #Banat Sports Hall#,#4#: #Dan Paltinisanu Stadium#},#correct#: 1}";
+        questions[4] = "{#question#: #Which city in Romania was the first in the world to use a public lighting system with incandescent light bulbs?#,#answers#: {#1#:#Timisoara#,#2#: #Bucharest#,#3#: #Cluj-Napoca#,#4#: #Brasov#},#correct#: 1}";
+
+        await Task.Delay(1000);
+
+        // for(int i=0; i<2;i++){
+        //     questions[i] = await aIController.GetResponse(currentLocation.getFormated()); 
+        // }
         questionsInitialized = true;
 
         if(startQuiz){
@@ -97,10 +107,10 @@ public class Main : MonoBehaviour
             StartQuiz();
         }
 
-        await Task.Delay(61000);
-        for(int i=2; i<5;i++){
-            questions[i] = await aIController.GetResponse(currentLocation.getFormated()); 
-        }
+        // await Task.Delay(61000);
+        // for(int i=2; i<5;i++){
+        //     questions[i] = await aIController.GetResponse(currentLocation.getFormated()); 
+        // }
     }
 
     public async void StartQuiz()
