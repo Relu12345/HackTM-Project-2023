@@ -33,23 +33,27 @@ public class Main : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // aIController = GetComponent<AIController>();
+        aIController = GetComponent<AIController>();
         gps = GetComponent<GPS>();
         uILogic = GetComponent<UILogic>();
 
         gps.Init();
-        // aIController.Init();
+        aIController.Init();
         uILogic.Init(StartButton, StartBCIButton, NextQuestion);
     }
 
     void StartBCIButton()
     {
-        // currentLocation = gps.GetLocation();
+#if UNITY_EDITOR
         currentLocation = new GPS.Location("Timisoara", "Romania");
+#else
+        currentLocation = gps.GetLocation();
+#endif
+        
 
         if(currentLocation.success){
             LoadMessages(false);
-            // SendGetRequest();
+            // SendGetRequest(currentLocation);
             SimpleMode = false;
             uILogic.ChangeScreen(uILogic.calibrare);
             BCI.SetActive(true);
@@ -62,38 +66,28 @@ public class Main : MonoBehaviour
 
     void StartButton()
     {
-        // currentLocation = gps.GetLocation();
+#if UNITY_EDITOR
         currentLocation = new GPS.Location("Timisoara", "Romania");
+#else
+        currentLocation = gps.GetLocation();
+#endif
 
         if(currentLocation.success){
             loadingScreen.SetActive(true);
             simpleEventSystem.SetActive(true);
             LoadMessages(true);
             SimpleMode = true;
-            // SendGetRequest();
-            // uILogic.ChangeScreen(uILogic.calibrare);
+            // SendGetRequest(currentLocation);
         }
         else{
-            uILogic.ChangeScreen(uILogic.errorPage);
+            // uILogic.ChangeScreen(uILogic.errorPage);
         }
     }
 
     private async void LoadMessages(bool startQuiz)
     {
-        //Only for test
         questions = new string[5];
-        for(int i=0; i<5;i++){
-            questions[i] = "{#question#:#Used in ancient times by the poet Tibullus, The Eternal City is a nickname given to what European capital?#, #answers#:{#1#:#Venice#,#2#:#Tivoli#,#3#:#Rome#,#4#:#Siena#},#correct#:4}";
-        }
-        questionsInitialized = true;
-        if(startQuiz){
-            loadingScreen.SetActive(false);
-            StartQuiz();
-        }
-        
-        return; //Here
-
-        for(int i=0; i<3;i++){
+        for(int i=0; i<2;i++){
             questions[i] = await aIController.GetResponse(currentLocation.getFormated()); 
         }
         questionsInitialized = true;
@@ -104,14 +98,13 @@ public class Main : MonoBehaviour
         }
 
         await Task.Delay(61000);
-        for(int i=3; i<5;i++){
+        for(int i=2; i<5;i++){
             questions[i] = await aIController.GetResponse(currentLocation.getFormated()); 
         }
     }
 
     public async void StartQuiz()
     {
-        Debug.Log("Start Quiz");
         int attempts = 100;
         while(!questionsInitialized && attempts-- > 0){
             await Task.Delay(100);
@@ -135,9 +128,9 @@ public class Main : MonoBehaviour
     {
         if(currQuest < 5)
         {
+            currQuest++;
             currentQuestion = Parser.parseQuestion(questions[currQuest-1]);
             uILogic.DisplayQuestion(currentQuestion, buttonPressed);
-            currQuest++;
             uILogic.UpdateDots(currQuest);
         }
         else
