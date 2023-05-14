@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using TMPro;
 
 public class UILogic : MonoBehaviour
 {
@@ -91,7 +92,7 @@ public class UILogic : MonoBehaviour
             {
                 callBack.Invoke(ans);
             });
-            lbut[i].GetComponentInChildren<Text>().text = Convert.ToChar(i + 97) + ") " + question.answers[i];
+            lbut[i].GetComponentInChildren<TMP_Text>().text = Convert.ToChar(i + 97) + ") " + question.answers[i];
         }
         var textIntrebare = intrebare.Q<Label>("Label");
         textIntrebare.text = question.question;
