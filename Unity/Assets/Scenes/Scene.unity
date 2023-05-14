@@ -2881,6 +2881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canSelect: 0
+  completedQuestion: {fileID: 21300000, guid: 0752c26930cdba74ea89adf13ec045fd, type: 3}
   lgam:
   - {fileID: 1282245391}
   - {fileID: 1240360990}
