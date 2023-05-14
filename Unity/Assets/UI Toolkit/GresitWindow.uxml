@@ -4,6 +4,10 @@
             <ui:VisualElement style="background-image: url(&apos;project://database/Assets/Images/Vector-1.png?fileID=21300000&amp;guid=33050bc79eee2564885acfb0492aa899&amp;type=3#Vector-1&apos;); flex-grow: 0; height: 40%; width: 40%; min-height: 30%; align-items: center; -unity-background-scale-mode: scale-to-fit;" />
             <ui:Label text="Wrong Answer!" display-tooltip-when-elided="true" style="padding-top: 20px; font-size: 18px; padding-bottom: 15px;" />
             <ui:VisualElement style="flex-direction: row;">
+                <ui:Label text="Yours:" display-tooltip-when-elided="true" style="padding-bottom: 30px;" />
+                <ui:Label display-tooltip-when-elided="true" name="WValue" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-direction: row;">
                 <ui:Label text="Correct: " display-tooltip-when-elided="true" style="padding-bottom: 30px;" />
                 <ui:Label display-tooltip-when-elided="true" name="Value" />
             </ui:VisualElement>
