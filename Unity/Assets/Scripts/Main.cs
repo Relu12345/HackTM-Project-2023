@@ -24,29 +24,30 @@ public class Main : MonoBehaviour
     private int currQuest = 0;
     private int correct = 0;
 
+    private string[] questions;
     private GPS.Location currentLocation;
+    private bool questionsInitialized = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        //aIController = GetComponent<AIController>();
+        // aIController = GetComponent<AIController>();
         gps = GetComponent<GPS>();
         uILogic = GetComponent<UILogic>();
 
         gps.Init();
-        //aIController.Init();
+        // aIController.Init();
         uILogic.Init(StartButton, NextQuestion);
     }
 
     void StartButton()
     {
         // currentLocation = gps.GetLocation();
-        currentLocation = new GPS.Location("Budapesta", "Hungary");
+        currentLocation = new GPS.Location("Timisoara", "Romania");
 
         if(currentLocation.success){
-            // SendGetRequest(currentLocation);
-            //ToDo
-            // Load all the questions here asyncron
+            LoadMessages();
+            // SendGetRequest();
             uILogic.ChangeScreen(uILogic.calibrare);
             BCI.SetActive(true);
             BCImgr.SetActive(true);
@@ -56,15 +57,42 @@ public class Main : MonoBehaviour
         }
     }
 
+    private async void LoadMessages()
+    {
+        //Only for test
+        questions = new string[5];
+        for(int i=0; i<5;i++){
+            questions[i] = "{#question#:#Used in ancient times by the poet Tibullus, The Eternal City is a nickname given to what European capital?#, #answers#:{#1#:#Venice#,#2#:#Tivoli#,#3#:#Rome#,#4#:#Siena#},#correct#:4}";
+        }
+        questionsInitialized = true;
+        return; //Here
+
+        for(int i=0; i<3;i++){
+            questions[i] = await aIController.GetResponse(currentLocation.getFormated()); 
+        }
+        questionsInitialized = true;
+        await Task.Delay(61000);
+        for(int i=3; i<5;i++){
+            questions[i] = await aIController.GetResponse(currentLocation.getFormated()); 
+        }
+    }
+
     public async void StartQuiz()
     {
+        int attempts = 100;
+        while(!questionsInitialized && attempts-- > 0){
+            await Task.Delay(100);
+        }
+
+        if(!questionsInitialized){
+            // Display error
+            // return
+        }
+
         currQuest = 1;
         BCI.SetActive(false);
-        currentQuestion = Parser.parseQuestion("{#question#:#Used in ancient times by the poet Tibullus, The Eternal City is a nickname given to what European capital?#, #answers#:{#1#:#Venice#,#2#:#Tivoli#,#3#:#Rome#,#4#:#Siena#},#correct#:3}");
 
-        // var r = await aIController.GetResponse(currentLocation.getFormated());
-
-        // currentQuestion = Parser.parseQuestion(r);
+        currentQuestion = Parser.parseQuestion(questions[currQuest-1]);
         uILogic.DisplayQuestion(currentQuestion, buttonPressed);
         // Debug.Log(r);
        
@@ -74,9 +102,7 @@ public class Main : MonoBehaviour
     {
         if(currQuest < 5)
         {
-            //var r = await aIController.GetResponse("Baia Mare, Romania");
-
-            //currentQuestion = Parser.parseQuestion(r);
+            currentQuestion = Parser.parseQuestion(questions[currQuest-1]);
             uILogic.DisplayQuestion(currentQuestion, buttonPressed);
             currQuest++;
         }
@@ -89,17 +115,23 @@ public class Main : MonoBehaviour
         
     }
 
-    void buttonPressed(int userAnswer)
+    public void buttonPressed(uint userAnswer)
     {
+        if (!uILogic.canSelect)
+        {
+            return;
+        }
+        uILogic.canSelect = false;
         if(userAnswer == currentQuestion.correctAnswer){
             uILogic.ChangeScreen(uILogic.corect);
-            uILogic.corect.Q<Label>("Value").text = Convert.ToChar(currentQuestion.correctAnswer + 97) + ") " + currentQuestion.answers[currentQuestion.correctAnswer];
+            uILogic.corect.Q<Label>("Value").text = Convert.ToChar(currentQuestion.correctAnswer -1 + 97) + ") " + currentQuestion.answers[currentQuestion.correctAnswer - 1];
             correct++;
             Debug.Log(correct);
         }
         else{
             uILogic.ChangeScreen(uILogic.gresit);
-            uILogic.gresit.Q<Label>("Value").text = Convert.ToChar(currentQuestion.correctAnswer + 97) + ") " + currentQuestion.answers[currentQuestion.correctAnswer];
+            uILogic.gresit.Q<Label>("Value").text = Convert.ToChar(currentQuestion.correctAnswer - 1 + 97) + ") " + currentQuestion.answers[currentQuestion.correctAnswer - 1];
+            uILogic.gresit.Q<Label>("WValue").text = Convert.ToChar(userAnswer- 1 + 97) + ") " + currentQuestion.answers[userAnswer - 1];
         }
     }
 
