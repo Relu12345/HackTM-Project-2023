@@ -14,7 +14,7 @@ public class AIController : MonoBehaviour
     private Conversation chat;
 
     // ToDo remove this from here
-    private readonly string api_key = "sarac ia-ti si tu cheie"; 
+    private readonly string api_key = "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"; 
     
     private readonly string instructions = @"
     I need 1 trivia question about the city of X located in Y. I want it with 4 possible answers. Out of the 4 answares only 1 correct. The answers will have a maximum of 5 words. The question will also have a maximum of 30 words. The question and the answer can only be written in ENGLISH. This will be the format in which you will give the question with the answers:
