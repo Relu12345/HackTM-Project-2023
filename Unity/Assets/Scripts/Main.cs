@@ -53,7 +53,7 @@ public class Main : MonoBehaviour
             BCImgr.SetActive(true);
         }
         else{
-            //Display error screen
+            uILogic.ChangeScreen(uILogic.errorPage);
         }
     }
 
