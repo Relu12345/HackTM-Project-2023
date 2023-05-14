@@ -11,6 +11,11 @@ public class ClassSelectionAvailableExample : MonoBehaviour
     public ERPFlashController2D _flashController;
     private Dictionary<int, SpriteRenderer> _selectedObjects;
 
+    private readonly int maxSelectionCounter = 5;
+
+    private int selectionCounter = 0;
+    private int currentSelection = 0;
+
     public Main main;
     void Start()
     {
@@ -50,7 +55,23 @@ public class ClassSelectionAvailableExample : MonoBehaviour
         {
             if (_selectedClass > 0 && _selectedClass < 5)
             {
-                main.buttonPressed(_selectedClass);
+                if(currentSelection == 0){
+                    currentSelection = _selectedClass;
+                }
+                else if(currentSelection == _selectedClass){
+                    if(selectionCounter >= maxSelectionCounter){
+                       main.buttonPressed(_selectedClass);
+                       currentSelection = 0;
+                       selectionCounter = 0;
+                    }
+                    else{
+                        selectionCounter++;
+                    }
+                }
+                else{
+                    currentSelection = 0;
+                    selectionCounter = 0;
+                }
             }
 
             _update = false;
