@@ -48,7 +48,7 @@ public class ClassSelectionAvailableExample : MonoBehaviour
         //TODO ADD YOUR CODE HERE
         if (_update)
         {
-            if (_selectedClass != 0)
+            if (_selectedClass > 0 && _selectedClass < 5)
             {
                 main.buttonPressed(_selectedClass);
             }
