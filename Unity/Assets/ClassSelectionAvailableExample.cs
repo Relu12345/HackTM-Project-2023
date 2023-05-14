@@ -53,14 +53,6 @@ public class ClassSelectionAvailableExample : MonoBehaviour
                 main.buttonPressed(_selectedClass);
             }
 
-            if(_selectedClass > 4)
-            {
-                foreach(var obj in _selectedObjects)
-                {
-                    //Debug.Log(obj.ToString());
-                }
-            }
-
             _update = false;
         }
     }
@@ -76,10 +68,5 @@ public class ClassSelectionAvailableExample : MonoBehaviour
         _selectedClass = ea.Class;
         _update = true;
         Debug.Log(string.Format("Selected class: {0}", ea.Class));
-        //Debug.Log("In ClassSelection...: " + _selectedObjects.Keys.Count);
-        if (_selectedObjects.ContainsKey((int)_selectedClass))
-        {
-            //Debug.Log("avem ala");
-        }
     }
 }
