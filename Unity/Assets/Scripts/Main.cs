@@ -85,8 +85,7 @@ public class Main : MonoBehaviour
         }
 
         if(!questionsInitialized){
-            // Display error
-            // return
+            uILogic.ChangeScreen(uILogic.errorPage);
         }
 
         currQuest = 1;
