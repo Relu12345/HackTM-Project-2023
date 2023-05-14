@@ -70,6 +70,11 @@ public class UILogic : MonoBehaviour
         {
             nextCallBack.Invoke();
         };
+
+        errorPage.Q<UnityEngine.UIElements.Button>("TryAgain").clicked += () =>
+        {
+            SceneManager.LoadScene(0);
+        };
         
         Debug.Log("UI initialized");
     }
