@@ -56,6 +56,7 @@ public class Main : MonoBehaviour
             // SendGetRequest(currentLocation);
             SimpleMode = false;
             uILogic.ChangeScreen(uILogic.calibrare);
+            simpleEventSystem.SetActive(false);
             BCI.SetActive(true);
             BCImgr.SetActive(true);
         }
@@ -132,6 +133,7 @@ public class Main : MonoBehaviour
             currentQuestion = Parser.parseQuestion(questions[currQuest-1]);
             uILogic.DisplayQuestion(currentQuestion, buttonPressed);
             uILogic.UpdateDots(currQuest);
+            BCImgr.SetActive(true);
         }
         else
         {
@@ -160,6 +162,7 @@ public class Main : MonoBehaviour
             uILogic.gresit.Q<Label>("Value").text = "Correct: " + Convert.ToChar(currentQuestion.correctAnswer - 1 + 97) + ") " + currentQuestion.answers[currentQuestion.correctAnswer - 1];
             uILogic.gresit.Q<Label>("WValue").text = "Yours: " + Convert.ToChar(userAnswer- 1 + 97) + ") " + currentQuestion.answers[userAnswer - 1];
         }
+        BCImgr.SetActive(false);
     }
 
     private void SendGetRequest(GPS.Location location)
